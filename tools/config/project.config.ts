@@ -9,7 +9,7 @@ import { SeedAdvancedConfig } from './seed-advanced.config';
 export class ProjectConfig extends SeedAdvancedConfig {
 
   PROJECT_TASKS_DIR = join(process.cwd(), this.TOOLS_DIR, 'tasks', 'project');
-
+  
   constructor() {
     super();
     // this.APP_TITLE = 'Put name of your app here';
@@ -30,28 +30,13 @@ export class ProjectConfig extends SeedAdvancedConfig {
       // {src: `${this.CSS_SRC}/path-to-lib/test-lib.css`, inject: true, vendor: false},
     ];
 
-    // Add packages (e.g. lodash)
+    // Add packages (e.g. ng2-translate)
+    // ng2-translate is already added with the advanced seed - here for example only
     // let additionalPackages: ExtendPackages[] = [{
-    //   name: 'lodash',
-    //   path: `${this.APP_BASE}node_modules/lodash/lodash.js`,
-    //   packageMeta: {
-    //     main: 'index.js',
-    //     defaultExtension: 'js'
-    //   }
+    //   name: 'ng2-translate',
+    //   // Path to the package's bundle
+    //   path: 'node_modules/ng2-translate/bundles/ng2-translate.umd.js'
     // }];
-    //
-    // or
-    //
-    // let additionalPackages: ExtendPackages[] = [];
-    //
-    // additionalPackages.push({
-    //   name: 'lodash',
-    //   path: `${this.APP_BASE}node_modules/lodash/lodash.js`,
-    //   packageMeta: {
-    //     main: 'index.js',
-    //     defaultExtension: 'js'
-    //   }
-    // });
     //
     // this.addPackagesBundles(additionalPackages);
 

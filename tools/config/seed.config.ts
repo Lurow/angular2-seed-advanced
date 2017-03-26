@@ -15,8 +15,8 @@ import { BuildType, ExtendPackages, InjectableDependency } from './seed.config.i
  * same name in "./projects". For further information take a
  * look at the documentation:
  *
- * 1) https://github.com/mgechev/angular2-seed/tree/master/tools
- * 2) https://github.com/mgechev/angular2-seed/wiki
+ * 1) https://github.com/mgechev/angular-seed/tree/master/tools
+ * 2) https://github.com/mgechev/angular-seed/wiki
  *
  *****************************************************************/
 
@@ -190,6 +190,12 @@ export class SeedConfig {
   APP_SRC = `src/${this.APP_CLIENT}`;
 
   /**
+   * The name of the TypeScript project file
+   * @type {string}
+   */
+  APP_PROJECTNAME = 'tsconfig.json';
+
+  /**
    * The folder of the applications asset files.
    * @type {string}
    */
@@ -200,6 +206,11 @@ export class SeedConfig {
    * @type {string}
    */
   CSS_SRC = `${this.APP_SRC}/css`;
+
+  /**
+   * The folder of the e2e specs and framework
+   */
+  E2E_SRC = 'src/e2e';
 
   /**
    * The folder of the applications scss files.
@@ -217,6 +228,18 @@ export class SeedConfig {
    * The directory of the tasks provided by the seed.
    */
   SEED_TASKS_DIR = join(process.cwd(), this.TOOLS_DIR, 'tasks', 'seed');
+
+  /**
+   * Seed tasks which are composition of other tasks.
+   */
+  SEED_COMPOSITE_TASKS = join(process.cwd(), this.TOOLS_DIR, 'config', 'seed.tasks.json');
+
+  /**
+   * Project tasks which are composition of other tasks
+   * and aim to override the tasks defined in
+   * SEED_COMPOSITE_TASKS.
+   */
+  PROJECT_COMPOSITE_TASKS = join(process.cwd(), this.TOOLS_DIR, 'config', 'project.tasks.json');
 
   /**
    * The destination folder for the generated documentation.
@@ -241,6 +264,12 @@ export class SeedConfig {
    * @type {string}
    */
   PROD_DEST = `${this.DIST_DIR}/prod`;
+
+  /**
+   * The folder for the built files of the e2e-specs.
+   * @type {string}
+   */
+  E2E_DEST = `${this.DIST_DIR}/e2e`;
 
   /**
    * The folder for temporary files.
@@ -270,6 +299,12 @@ export class SeedConfig {
    * The version of the application as defined in the `package.json`.
    */
   VERSION = appVersion();
+
+  /**
+   * The banner string to print when starting the server.
+   * @type {string}
+   */
+  SERVER_STARTUP_BANNER = 'Starting the server..';
 
   /**
    * The name of the bundle file to includes all CSS files.
@@ -309,12 +344,25 @@ export class SeedConfig {
   ENABLE_SCSS = ['true', '1'].indexOf(`${process.env.ENABLE_SCSS}`.toLowerCase()) !== -1 || argv['scss'] || false;
 
   /**
+   * Enable tslint emit error by setting env variable FORCE_TSLINT_EMIT_ERROR
+   * @type {boolean}
+   */
+  FORCE_TSLINT_EMIT_ERROR = !!process.env.FORCE_TSLINT_EMIT_ERROR;
+
+  /**
+   * Extra paths for the gulp process to watch for to trigger compilation.
+   * @type {string[]}
+   */
+  EXTRA_WATCH_PATHS: string[] = [];
+
+  /**
    * The list of NPM dependcies to be injected in the `index.html`.
    * @type {InjectableDependency[]}
    */
   NPM_DEPENDENCIES: InjectableDependency[] = [
-    { src: 'zone.js/dist/zone.js', inject: 'libs' },
     { src: 'core-js/client/shim.min.js', inject: 'shims' },
+    { src: 'zone.js/dist/zone.js', inject: 'libs' },
+    { src: 'zone.js/dist/long-stack-trace-zone.js', inject: 'libs', buildType: BUILD_TYPES.DEVELOPMENT },
     { src: 'intl/dist/Intl.min.js', inject: 'shims' },
     { src: 'systemjs/dist/system.src.js', inject: 'shims', buildType: BUILD_TYPES.DEVELOPMENT },
     // Temporary fix. See https://github.com/angular/angular/issues/9359
@@ -336,6 +384,13 @@ export class SeedConfig {
   TEMP_FILES: string[] = [
     '**/*___jb_tmp___',
     '**/*~',
+
+    // tns-files are ignored aswell
+    '**/*.tns.scss',
+    '**/*.tns.css',
+    '**/*.tns.html',
+    'src/**/*.js',
+    'src/**/*.js.map',
   ];
 
   /**
@@ -551,6 +606,28 @@ export class SeedConfig {
       }
     }
   };
+
+  constructor() {
+    for (let proxy of this.getProxyMiddleware()) {
+      this.PLUGIN_CONFIGS['browser-sync'].middleware.push(proxy);
+    }
+  }
+
+  /**
+   * Get proxy middleware configuration. Add in your project config like:
+   * getProxyMiddleware(): Array<any> {
+   *   const proxyMiddleware = require('http-proxy-middleware');
+   *   return [
+   *     proxyMiddleware('/ws', {
+   *       ws: false,
+   *       target: 'http://localhost:3003'
+   *     })
+   *   ];
+   * }
+   */
+  getProxyMiddleware(): Array<any> {
+    return [];
+  }
 
   /**
    * Karma reporter configuration

@@ -1,23 +1,28 @@
 // libs
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 // app
-import { BaseComponent, RouterExtensions } from '../../frameworks/core/index';
-import { NAME_LIST_ACTIONS } from '../../frameworks/sample/index';
+import { RouterExtensions, Config } from '../../shared/core/index';
+import { IAppState, getNames } from '../../shared/ngrx/index';
+import * as nameList from '../../shared/sample/index';
 
-@BaseComponent({
+@Component({
   moduleId: module.id,
   selector: 'sd-home',
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   public names$: Observable<any>;
-  public newName: string = '';
+  public newName: string;
 
-  constructor(private store: Store<any>, public routerext: RouterExtensions) {
-    this.names$ = store.select('names');
+  constructor(private store: Store<IAppState>, public routerext: RouterExtensions) {}
+
+  ngOnInit() {
+    this.names$ = this.store.let(getNames);
+    this.newName = '';
   }
 
   /*
@@ -25,7 +30,7 @@ export class HomeComponent {
    * @returns return false to prevent default form submit behavior to refresh the page.
    */
   addName(): boolean {
-    this.store.dispatch({ type: NAME_LIST_ACTIONS.ADD, payload: this.newName });
+    this.store.dispatch(new nameList.AddAction(this.newName));
     this.newName = '';
     return false;
   }
