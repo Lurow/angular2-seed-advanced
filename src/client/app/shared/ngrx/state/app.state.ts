@@ -39,8 +39,8 @@ import { combineReducers } from '@ngrx/store';
  */
 import * as fromMultilingual from '../../i18n/index';
 import { IMultilingualState } from '../../i18n/index';
-import * as fromSample from '../../sample/index';
-import { ISampleState } from '../../sample/index';
+import * as fromSample from '../../app/index';
+import { ISampleState } from '../../app/index';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means

@@ -1,0 +1,12 @@
+{
+  "HOME": "Start",
+  "ABOUT": "Über uns",
+  "HELLO": "Hallo",
+  "LOVE_TECH": "Ich liebe Technologie!",
+  "ABOUT_ADD": "Mehr? Füge sie selbst hinzu!",
+  "ABOUT_REWARD": "Als Belohnung gibt es eine Liste berühmter Wissenschaftler:",
+  "INPUT_HINT": "Füge einen neuen Wissenschaftler hinzu...",
+  "ADD_BTN_TEXT": "Hinzufügen",
+  "SUCCESS_MSG": "Der Deploy des Seeds verlief reibungslos",
+  "PLAYGROUND_DESCRIPTION":"Willkommen in unserem ganz persönlichen Coding-Spielplatz, hier werden allerlei Algorithmen und fancy features ausprobiert. Basieren tut diese ganze Section auf Angular (4). Also, gerne rumspielen und bugs reporten"
+}

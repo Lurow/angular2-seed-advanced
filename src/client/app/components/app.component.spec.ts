@@ -13,7 +13,7 @@ import { Angulartics2Segment } from 'angulartics2/dist/providers/segment/angular
 // app
 import { t } from '../shared/test/index';
 import { TEST_CORE_PROVIDERS, TEST_HTTP_PROVIDERS } from '../shared/core/testing/index';
-import { NameListService, NavbarComponent, ToolbarComponent } from '../shared/sample/index';
+import { NameListService, NavbarComponent, ToolbarComponent } from '../shared/app/index';
 import { MultilingualModule } from '../shared/i18n/multilingual.module';
 import { reducer } from '../shared/i18n/index';
 

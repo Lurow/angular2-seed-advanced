@@ -21,8 +21,8 @@ import { AppReducer } from './app/shared/ngrx/index';
 import { AnalyticsModule } from './app/shared/analytics/analytics.module';
 import { MultilingualModule, translateLoaderFactory } from './app/shared/i18n/multilingual.module';
 import { MultilingualEffects } from './app/shared/i18n/index';
-import { SampleModule } from './app/shared/sample/sample.module';
-import { NameListEffects } from './app/shared/sample/index';
+import { AppModule } from './app/shared/app/app.module';
+import { NameListEffects } from './app/shared/app/index';
 
 // config
 import { Config, WindowService, ConsoleService } from './app/shared/core/index';
@@ -33,7 +33,7 @@ if (String('<%= BUILD_TYPE %>') === 'dev') {
 }
 
 // sample config (extra)
-import { AppConfig } from './app/shared/sample/services/app-config';
+import { AppConfig } from './app/shared/app/services/app-config';
 import { MultilingualService } from './app/shared/i18n/services/multilingual.service';
 // custom i18n language support
 MultilingualService.SUPPORTED_LANGUAGES = AppConfig.SUPPORTED_LANGUAGES;
@@ -79,7 +79,7 @@ if (String('<%= BUILD_TYPE %>') === 'dev') {
       deps: [Http],
       useFactory: (translateLoaderFactory)
     }]),
-    SampleModule,
+    AppModule,
     StoreModule.provideStore(AppReducer),
 DEV_IMPORTS,
     EffectsModule.run(MultilingualEffects),

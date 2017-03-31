@@ -6,8 +6,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 // app
-import { SAMPLE_COMPONENTS } from './components/index';
-import { SAMPLE_PROVIDERS } from './services/index';
+import { APP_COMPONENTS } from './components/index';
+import { APP_PROVIDERS } from './services/index';
 import { MultilingualModule } from '../i18n/multilingual.module';
 
 /**
@@ -23,25 +23,25 @@ import { MultilingualModule } from '../i18n/multilingual.module';
     MultilingualModule,
   ],
   declarations: [
-    SAMPLE_COMPONENTS
+    APP_COMPONENTS
   ],
   providers: [
-    SAMPLE_PROVIDERS
+    APP_PROVIDERS
   ],
   schemas: [
     NO_ERRORS_SCHEMA,
     CUSTOM_ELEMENTS_SCHEMA
   ],
   exports: [
-    SAMPLE_COMPONENTS,
+    APP_COMPONENTS,
     MultilingualModule
   ]
 })
-export class SampleModule {
+export class AppModule {
 
-  constructor(@Optional() @SkipSelf() parentModule: SampleModule) {
+  constructor(@Optional() @SkipSelf() parentModule: AppModule) {
     if (parentModule) {
-      throw new Error('SampleModule already loaded; Import in root module only.');
+      throw new Error('AppModule already loaded; Import in root module only.');
     }
   }
 }

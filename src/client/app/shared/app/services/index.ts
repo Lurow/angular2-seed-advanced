@@ -1,6 +1,6 @@
 import { NameListService } from './name-list.service';
 
-export const SAMPLE_PROVIDERS: any[] = [
+export const APP_PROVIDERS: any[] = [
   NameListService
 ];
 

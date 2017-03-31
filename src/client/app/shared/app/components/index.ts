@@ -1,7 +1,7 @@
 import { NavbarComponent } from './navbar.component';
 import { ToolbarComponent } from './toolbar.component';
 
-export const SAMPLE_COMPONENTS: any[] = [
+export const APP_COMPONENTS: any[] = [
   NavbarComponent,
   ToolbarComponent
 ];

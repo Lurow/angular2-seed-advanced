@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 // app
 import { RouterExtensions, Config } from '../../shared/core/index';
 import { IAppState, getNames } from '../../shared/ngrx/index';
-import * as nameList from '../../shared/sample/index';
+import * as nameList from '../../shared/app/index';
 
 @Component({
   moduleId: module.id,

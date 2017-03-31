@@ -14,7 +14,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { t } from '../../shared/test/index';
-import { NameListService, NameListEffects, reducer } from '../../shared/sample/index';
+import { NameListService, NameListEffects, reducer } from '../../shared/app/index';
 import { CoreModule } from '../../shared/core/core.module';
 import { AnalyticsModule } from '../../shared/analytics/analytics.module';
 import { MultilingualModule } from '../../shared/i18n/multilingual.module';
